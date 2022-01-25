@@ -70,6 +70,8 @@ KEY `FK_PERSONA` (`idpersona`)
 INSERT INTO `manager`(`id`,`direccion`,`idpersona`) VALUES
 (1,'Rambla PobleNou 171 BCN',7),
 (2,'Avenida Constitución 110 Gijón',9);
+INSERT INTO `manager`(`id`,`direccion`,`idpersona`) VALUES
+(3,'Sanct Olai Gade 34 Elsinor',12);
 
 --
 -- Filtros para la tabla `manager`
@@ -102,6 +104,8 @@ INSERT INTO `atleta` (`id`,`altura`,`peso`,`idpersona`,`idequipo`) VALUES
 (1,1.80,77.8,1,1),
 (2,1.63,55.3,2,1),
 (3,1.82,80.1,3,2);
+INSERT INTO `atleta` (`id`,`altura`,`peso`,`idpersona`,`idequipo`) VALUES
+(4,1.90,84.5,4,3);
 
 --
 -- Filtros para la tabla `atleta`
@@ -132,6 +136,8 @@ KEY `FKMANAGER` (`idmanager`)
 INSERT INTO `equipo`(`id`,`anioincripcion`,`idmanager`) VALUES
 (1,1999,1),
 (2,2001,2);
+INSERT INTO `equipo`(`id`,`anioincripcion`,`idmanager`) VALUES
+(3,2004,3);
 --
 -- Filtros para la tabla `equipo`
 --
