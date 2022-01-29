@@ -27,7 +27,7 @@ public class GestionFederacionDeportiva {
 				switch (opcion) {
 				case 1:
 					do {
-						System.out.println("\nEligio perfil de usuario Directiva");
+						System.out.println("\nEligio perfil de usuario Directiva ");
 						System.out.println("------------------------------------\n");
 						// Aquí ya se tienen las opciones del menu para la Directiva
 						portal.mostrarMenuDirectiva();
@@ -47,10 +47,67 @@ public class GestionFederacionDeportiva {
 					} while (subopcion != 4);
 					break;
 				case 2:
+					do {
+						System.out.println("\nEligio perfil de usuario Manager ");
+						System.out.println("------------------------------------\n");
+						// Aquí ya se tienen las opciones del menu para el Manager
+						portal.mostrarMenuManager();
+
+						try {
+							subopcion = teclado.nextInt();
+							if (subopcion < 1 || subopcion > 3) {
+								System.out.println("Opcion incorrecta.\n");
+								continue;
+							}
+
+						} catch (InputMismatchException e) {
+							System.out.println("La eleccion debe de ser un número entre 1 y 3 Intente de nuevo ");
+							teclado.next();
+						}
+
+					} while (subopcion != 3);
 					break;
 				case 3:
+					do {
+						System.out.println("\nEligio perfil de usuario Colegiado ");
+						System.out.println("------------------------------------\n");
+						// Aquí ya se tienen las opciones del menu para el Colegiado
+						portal.mostrarMenuColegiado();
+						
+						try {
+							subopcion = teclado.nextInt();
+							if (subopcion < 1 || subopcion > 3) {
+								System.out.println("Opcion incorrecta.\n");
+								continue;
+							}
+
+						} catch (InputMismatchException e) {
+							System.out.println("La eleccion debe de ser un número entre 1 y 3 Intente de nuevo ");
+							teclado.next();
+						}
+
+					} while (subopcion != 3);
 					break;
 				case 4:
+					do {
+						System.out.println("\nEligio perfil de usuario Atleta ");
+						System.out.println("------------------------------------\n");
+						// Aquí ya se tienen las opciones del menu para el Atleta
+						portal.mostrarMenuAtleta();
+						
+						try {
+							subopcion = teclado.nextInt();
+							if (subopcion < 1 || subopcion > 3) {
+								System.out.println("Opcion incorrecta.\n");
+								continue;
+							}
+
+						} catch (InputMismatchException e) {
+							System.out.println("La eleccion debe de ser un número entre 1 y 3 Intente de nuevo ");
+							teclado.next();
+						}
+
+					} while (subopcion != 3);
 					break;
 				default:
 					System.out.println("\nSaliendo....");
