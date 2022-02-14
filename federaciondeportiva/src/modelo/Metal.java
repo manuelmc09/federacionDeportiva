@@ -70,7 +70,7 @@ public abstract class Metal implements Comparable<Metal> {
 		// para evitar error inicializo a 0. Corregir problema con el float de Pureza en
 		// compareTo()
 		int compara = 0;
-		// compara=getPureza().compareTo(m.getPureza());
+		compara=Float.compare(getPureza(), m.getPureza());///compare para floats
 		if (compara == 0) {
 			compara = getFechacompra().compareTo(m.getFechacompra());
 		}
