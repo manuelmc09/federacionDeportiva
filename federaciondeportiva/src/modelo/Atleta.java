@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Scanner;
+
 public class Atleta extends Participante {
 	// Atributos
 	private long idatleta;
@@ -105,4 +107,15 @@ public class Atleta extends Participante {
 		return "Atleta [idatleta=" + idatleta + ", altura=" + altura + ", peso=" + peso + ", atleta=" + atleta + "]";
 	}
 
+	/**
+	 * <!-- Ejercicio 4 Apartado 2--> Preguntar al usuario por la salida estándar
+	 * 
+	 * @return objeto Atleta 
+	 */
+	public static Atleta nuevoAtleta() {
+		Scanner teclado = new Scanner(System.in);
+		Atleta a = null;
+		DatosPersona p=null;
+		return a;
+	}
 }

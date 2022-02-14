@@ -1,6 +1,8 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import modelo.DatosPersona;
 
@@ -13,7 +15,10 @@ public class Prueba {
 	private Lugar lugar;
 	private Colegiado[] arbitros = new Colegiado[3];
 	private Resultado resultado = null;
-	// private Participante[] participantes;
+	// Podria ser un array puesto que sabemos de antemano el limite de participantes
+	// en las pruebas: Entre 3 y 5.
+	// private Participante[] participantes
+	private ArrayList<Participante> participantes;
 
 	// Constructores
 	/**
@@ -59,6 +64,26 @@ public class Prueba {
 		this.arbitros = arbitros;
 	}
 
+	/**
+	 * Constructor con 6 parametros
+	 * 
+	 * @param id
+	 * @param nombre
+	 * @param fecha
+	 * @param individual
+	 * @param lugar
+	 * @param participantes
+	 */
+	public Prueba(long id, String nombre, LocalDate fecha, boolean individual, Lugar lugar,
+			ArrayList<Participante> participantes) {
+		this.id = id;
+		this.nombre = nombre;
+		this.fecha = fecha;
+		this.individual = individual;
+		this.lugar = lugar;
+		this.participantes = participantes;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -99,14 +124,6 @@ public class Prueba {
 		this.lugar = lugar;
 	}
 
-	public Colegiado[] getArbitros() {
-		return arbitros;
-	}
-
-	public void setArbitros(Colegiado[] arbitros) {
-		this.arbitros = arbitros;
-	}
-
 	public Resultado getResultado() {
 		return resultado;
 	}
@@ -115,10 +132,43 @@ public class Prueba {
 		this.resultado = resultado;
 	}
 
+	public ArrayList<Participante> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(ArrayList<Participante> participantes) {
+		this.participantes = participantes;
+	}
+
+	/**
+	 * Metodo que devuelve toda la información de la Prueba
+	 * 
+	 * @return información de la Prueba <!-- Ejercicio 3 --> Sobrescribir la función
+	 *         toString de la clase Prueba de forma que se muestre, en este orden:
+	 *         el identificador de la prueba, junto a su lugar y fecha de
+	 *         celebración, el nombre de la prueba y el de la competición a la que
+	 *         pertenece, si se trata de una prueba individual o no y, a través de
+	 *         un iterador sobre el campo para los Participantes, los datos de cada
+	 *         uno de éstos. Se indicará: “Por la calle <calle> con el dorsal
+	 *         <dorsal> /t el equipo/atleta <idEquipo/idAtleta>.“ En el caso de
+	 *         tratarse de una competición por equipos, habrá que indicar también la
+	 *         composición (identificadores de los atletas) de ese equipo. Por
+	 *         último, si la prueba está cerrada, es decir, tiene un Resultado,
+	 *         indicar los datos de los colegiados de la prueba y el podio final de
+	 *         la prueba.
+	 */
 	@Override
 	public String toString() {
-		return "Prueba [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", individual=" + individual
-				+ ", lugar=" + lugar + ", arbitros=" + Arrays.toString(arbitros) + ", resultado=" + resultado + "]";
+		String cadena = "";
+
+		cadena += "\n" + "id: " + id + " --> " + nombre + " --> "
+				+ fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " --> " + lugar.getNombre() + " --> "
+				+ this.individual + "\n"
+				// sin terminar. falta equipo arbital comformado y el resultado con los podios
+				// de los participantes
+				+ ", arbitros=" + Arrays.toString(arbitros) + ", resultado=" + resultado + ", participantes="
+				+ participantes + "]";
+		return cadena;
 	}
 
 	/**
