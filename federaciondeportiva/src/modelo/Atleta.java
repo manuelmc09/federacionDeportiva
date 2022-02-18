@@ -109,13 +109,25 @@ public class Atleta extends Participante {
 
 	/**
 	 * <!-- Ejercicio 4 Apartado 2--> Preguntar al usuario por la salida estándar
+	 * (FEDERARSE)
 	 * 
-	 * @return objeto Atleta 
+	 * @return objeto Atleta
 	 */
 	public static Atleta nuevoAtleta() {
 		Scanner teclado = new Scanner(System.in);
 		Atleta a = null;
-		DatosPersona p=null;
+		DatosPersona p = null;
 		return a;
+	}
+
+	/**
+	 * Metodo para exportar los datos de la entidad Atleta, que cumplen unos
+	 * criterios físicos (valor de peso y de altura dentro de unos rangos dados) de
+	 * entre una colección de Atletas que se pasa como parámetro.
+	 * 
+	 * @param atleta
+	 */
+	private static void exportarDatosbinario(Atleta[] atleta) {
+
 	}
 }

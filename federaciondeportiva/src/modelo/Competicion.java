@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Competicion {
 	private long id;
@@ -78,6 +79,17 @@ public class Competicion {
 	@Override
 	public String toString() {
 		return "Competicion [id=" + id + ", nombre=" + nombre + ", anio=" + anio + ", pruebas=" + pruebas + "]";
+	}
+	
+	/**
+	 * Metodo para establecer una nuevo objeto Competicion completo
+	 * @return c
+	 */
+	public static Competicion nuevaCompeticion() {
+		Scanner teclado = new Scanner(System.in);
+		Competicion c=null;
+		return c;
+		
 	}
 	
 

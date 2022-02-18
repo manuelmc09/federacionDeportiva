@@ -16,6 +16,16 @@ public abstract class Metal implements Comparable<Metal> {
 	public Metal() {
 
 	}
+	
+	/**
+	 * Constructor con dos parametros
+	 * @param fechacompra
+	 * @param pureza
+	 */
+	public Metal(LocalDate fechacompra, float pureza) {
+		this.fechacompra = fechacompra;
+		this.pureza = pureza;
+	}
 
 	/**
 	 * Constructor con todos los parametros
@@ -67,10 +77,9 @@ public abstract class Metal implements Comparable<Metal> {
 	 */
 
 	public int compareTo(Metal m) {
-		// para evitar error inicializo a 0. Corregir problema con el float de Pureza en
-		// compareTo()
 		int compara = 0;
-		compara=Float.compare(getPureza(), m.getPureza());///compare para floats
+		///compare para floats
+		compara=Float.compare(getPureza(), m.getPureza());
 		if (compara == 0) {
 			compara = getFechacompra().compareTo(m.getFechacompra());
 		}

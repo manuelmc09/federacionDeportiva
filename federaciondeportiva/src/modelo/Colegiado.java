@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Colegiado {
 	// Atributos
 	private long id;
@@ -72,6 +75,32 @@ public class Colegiado {
 	public String toString() {
 		return "Colegiado [id=" + id + ", categoria=" + categoria + "\ncolegiado: " + colegiado.getNombre() + "\nNif: "
 				+ colegiado.getTelefono() + "\nfechaNac: " + colegiado.getFechaNac().getYear();
+	}
+
+	/**
+	 * Metodo para establecer una nuevo objeto Colegiado completo
+	 * 
+	 * @return col
+	 */
+	public static Colegiado nuevoColegiado() {
+		Scanner teclado = new Scanner(System.in);
+		Colegiado col = null;
+		DatosPersona datos = null;
+		return col;
+	}
+
+	/**
+	 * Método para importar desde un fichero de bytes que contiene varios objetos
+	 * Colegiado, aquellos que sean de una categoría en concreto (la cual se pasa
+	 * como parámetro en forma de cadena de caracteres). El método devolverá la
+	 * colección de objetos de la entidad Colegiado que cumplan ese criterio.
+	 * 
+	 * @param col
+	 */
+	private static ArrayList<Colegiado> exportarDatosbytes(String Categoria) {
+		ArrayList<Colegiado> colegiadosCat = null;
+		return colegiadosCat;
+
 	}
 
 }

@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Scanner;
+
 public class Manager {
 	// Atributos
 	private long id;
@@ -87,4 +89,14 @@ public class Manager {
 				+ "]";
 	}
 
+	/**
+	 * Metodo que crea un nuevo Manager completo
+	 * @return objeto Manager
+	 */
+	public static Manager nuevoManager() {
+		Scanner teclado = new Scanner(System.in);
+		Manager manager = null;
+		DatosPersona datos = null;
+		return manager;
+	}
 }

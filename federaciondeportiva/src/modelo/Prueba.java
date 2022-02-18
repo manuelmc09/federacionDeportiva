@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
+
 import modelo.DatosPersona;
 
 public class Prueba {
@@ -16,7 +18,7 @@ public class Prueba {
 	private Colegiado[] arbitros = new Colegiado[3];
 	private Resultado resultado = null;
 	// Podria ser un array puesto que sabemos de antemano el limite de participantes
-	// en las pruebas: Entre 3 y 5.
+	// en las pruebas: Entre 3 y 10.
 	// private Participante[] participantes
 	private ArrayList<Participante> participantes;
 
@@ -234,5 +236,16 @@ public class Prueba {
 			cadena += "]";
 		}
 		return cadena;
+	}
+
+	/**
+	 * Metodo para establecer una nuevo objeto Prueba completo
+	 * @return p
+	 */
+	public static Prueba nuevaPrueba() {
+		Scanner teclado = new Scanner(System.in);
+		Prueba p = null;
+		return p;
+
 	}
 }
