@@ -91,12 +91,25 @@ public class Manager {
 
 	/**
 	 * Metodo que crea un nuevo Manager completo
+	 * 
 	 * @return objeto Manager
 	 */
 	public static Manager nuevoManager() {
 		Scanner teclado = new Scanner(System.in);
 		Manager manager = null;
+		long id = -1;
+		String telefono = "";
+		String direccion = "";
 		DatosPersona datos = null;
+		System.out.println("Introducir el id del manager ");
+		id = teclado.nextLong();
+		System.out.println("Introducir el telefono del manager ");
+		telefono = teclado.next();
+		System.out.println("Introducir la dirección del manager ");
+		direccion = teclado.next();
+		System.out.println("Introducir el resto de datos personales: ");
+		datos = DatosPersona.nuevaPersona();
 		return manager;
+
 	}
 }

@@ -1,6 +1,9 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Scanner;
+
+import utils.Utilidades;
 
 public class DatosPersona {
 	// Atributos
@@ -75,6 +78,28 @@ public class DatosPersona {
 	public String toString() {
 		return "DatosPersona [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", fechaNac=" + fechaNac
 				+ "]";
+	}
+
+	/**
+	 * Metodo para crear un objeto de DatosPersona completo
+	 * 
+	 * @return
+	 */
+	public static DatosPersona nuevaPersona() {
+		Scanner teclado = new Scanner(System.in);
+		DatosPersona persona = null;
+		long id = -1;
+		String nombre = "";
+		String telefono = "";
+		LocalDate fechaNac = null;
+		System.out.println("Introduzca el id de la persona:");
+		id = teclado.nextInt();
+		System.out.println("Introduzca el teléfono de la persona:");
+		telefono = teclado.next();
+		System.out.println("Introduzca la fecha de nacimiento de la persona");
+		fechaNac = Utilidades.leerFecha();
+		persona = new DatosPersona(id, nombre, telefono, fechaNac);
+		return persona;
 	}
 
 }

@@ -116,7 +116,19 @@ public class Atleta extends Participante {
 	public static Atleta nuevoAtleta() {
 		Scanner teclado = new Scanner(System.in);
 		Atleta a = null;
-		DatosPersona p = null;
+		DatosPersona datos = null;
+		long id = -1;
+		float altura = 0.0F;
+		float peso = 0.0F;
+		System.out.println("Introducir el ide del atleta: ");
+		id = teclado.nextLong();
+		System.out.println("Introducir el peso del atleta(en Kgs:) ");
+		peso = teclado.nextFloat();
+		System.out.println("Introducir la altura del atleta(en m:) ");
+		altura = teclado.nextFloat();
+		System.out.println("Introducir el resto de datos personales: ");
+		datos = DatosPersona.nuevaPersona();
+		a=new Atleta(id,altura,peso,datos);
 		return a;
 	}
 

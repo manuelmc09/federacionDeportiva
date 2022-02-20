@@ -85,7 +85,19 @@ public class Colegiado {
 	public static Colegiado nuevoColegiado() {
 		Scanner teclado = new Scanner(System.in);
 		Colegiado col = null;
+		long id = -1;
+		String categoria = "";
+		String nif = "";
+		String telefono = "";
 		DatosPersona datos = null;
+		System.out.println("Introduzca el id del colegiado:");
+		id = teclado.nextLong();
+		System.out.println("Introducir la categoria del colegiado. (Solo puede escoger entre A, B o C");
+		categoria = teclado.next();
+		System.out.println("Introducir el nif del colegiado ");
+		nif = teclado.next();
+		System.out.println("Introducir el resto de datos personales: ");
+		datos = DatosPersona.nuevaPersona();
 		return col;
 	}
 
