@@ -34,7 +34,7 @@ public class Equipo extends Participante {
 	 * @param manager
 	 * @param componentes
 	 */
-	public Equipo(long idequipo,String nombre int anioinscripcion, Manager manager, TreeSet<Atleta> componentes) {
+	public Equipo(long idequipo,String nombre, int anioinscripcion, Manager manager, TreeSet<Atleta> componentes) {
 		super();
 		this.idequipo = idequipo;
 		this.nombre=nombre;
@@ -83,8 +83,9 @@ public class Equipo extends Participante {
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre){
-		return nombre;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public int getAnioinscripcion() {

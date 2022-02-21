@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Colegiado {
 	// Atributos
 	private long id;
-	private String categoria;
+	private Categoria categoria;
 	private DatosPersona colegiado;
 
 	// Constructores
@@ -23,7 +23,7 @@ public class Colegiado {
 	 * @param categoria
 	 * @param colegiado
 	 */
-	public Colegiado(long id, String categoria, DatosPersona colegiado) {
+	public Colegiado(long id, Categoria categoria, DatosPersona colegiado) {
 		super();
 		this.id = id;
 		this.categoria = categoria;
@@ -50,11 +50,11 @@ public class Colegiado {
 		this.id = id;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -92,7 +92,7 @@ public class Colegiado {
 		DatosPersona datos = null;
 		System.out.println("Introduzca el id del colegiado:");
 		id = teclado.nextLong();
-		System.out.println("Introducir la categoria del colegiado. (Solo puede escoger entre A, B o C");
+		System.out.println("Introducir la categoria del colegiado. (Solo puede escoger entre N y S");
 		categoria = teclado.next();
 		System.out.println("Introducir el nif del colegiado ");
 		nif = teclado.next();
