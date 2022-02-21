@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import modelo.DatosPersona;
@@ -162,14 +163,28 @@ public class Prueba {
 	@Override
 	public String toString() {
 		String cadena = "";
+		String cadena1 = "";
 
-		cadena += "\n" + "id: " + id + " --> " + nombre + " --> "
+		cadena += "\n" + "idprueba: " + id + " --> " + nombre + " --> "
 				+ fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " --> " + lugar.getNombre() + " --> "
-				+ this.individual + "\n"
-				// sin terminar. falta equipo arbital comformado y el resultado con los podios
-				// de los participantes
-				+ ", arbitros=" + Arrays.toString(arbitros) + ", resultado=" + resultado + ", participantes="
-				+ participantes + "]";
+				+ isIndividual() + "\n";
+		
+		Iterator<Participante> it_clasificacion = participantes.iterator();
+		Atleta a = null;
+		int podio = 1;
+		while (it_clasificacion.hasNext()) {
+			Participante p = it_clasificacion.next();
+			Integer dorsal = p.getDorsal();
+			char calle = p.getCalle();
+			cadena1 += "Por la calle " + calle + " con el dorsal " + dorsal + " el atleta " + a.getIdatleta();
+			// sin terminar. falta equipo arbital comformado y el resultado con los podios
+			// de los participantes
+		}
+
+		/*
+		 * + ", arbitros=" + Arrays.toString(arbitros) + ", resultado=" + resultado +
+		 * ", participantes=" + participantes + "]";
+		 */
 		return cadena;
 	}
 
@@ -240,6 +255,7 @@ public class Prueba {
 
 	/**
 	 * Metodo para establecer una nuevo objeto Prueba completo
+	 * 
 	 * @return p
 	 */
 	public static Prueba nuevaPrueba() {
@@ -248,4 +264,5 @@ public class Prueba {
 		return p;
 
 	}
+
 }

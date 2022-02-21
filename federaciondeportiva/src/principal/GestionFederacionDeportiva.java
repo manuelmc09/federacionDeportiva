@@ -131,6 +131,7 @@ public class GestionFederacionDeportiva {
 								System.out.println("\n--------------------------------------");
 								System.out.println("\tConformar Equipo");
 								System.out.println("--------------------------------------\n");
+								
 								break;
 							case 2:
 								System.out.println("\n------------------------------------------");

@@ -2,13 +2,18 @@ package modelo;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+import utils.Utilidades;
 
 public class Equipo extends Participante {
 	// Atributos
 	private long idequipo;
 	private int anioinscripcion;
 	private Manager manager;
-	private Atleta[] componentes;
+	private TreeSet<Atleta> componentes = new TreeSet<Atleta>();
 
 	// Constructores
 	/**
@@ -16,6 +21,7 @@ public class Equipo extends Participante {
 	 */
 	public Equipo() {
 		super();
+		this.componentes = new TreeSet<Atleta>();
 	}
 
 	/**
@@ -26,11 +32,11 @@ public class Equipo extends Participante {
 	 * @param manager
 	 * @param componentes
 	 */
-	public Equipo(long idequipo, int anioinscripcion, Manager manager, Atleta[] componentes) {
+	public Equipo(long idequipo, int anioinscripcion, Manager manager, TreeSet<Atleta> componentes) {
 		super();
 		this.idequipo = idequipo;
 		this.anioinscripcion = anioinscripcion;
-		this.componentes = componentes;
+		this.componentes = new TreeSet<Atleta>();
 	}
 
 	/**
@@ -46,7 +52,6 @@ public class Equipo extends Participante {
 		this.idequipo = equipo.idequipo;
 		this.anioinscripcion = equipo.anioinscripcion;
 		this.manager = equipo.manager;
-		this.componentes = equipo.componentes;
 	}
 
 	/**
@@ -87,11 +92,11 @@ public class Equipo extends Participante {
 		this.manager = manager;
 	}
 
-	public Atleta[] getComponentes() {
+	public TreeSet<Atleta> getComponentes() {
 		return componentes;
 	}
 
-	public void setComponentes(Atleta[] componentes) {
+	public void setComponentes(TreeSet<Atleta> componentes) {
 		this.componentes = componentes;
 	}
 
@@ -102,14 +107,33 @@ public class Equipo extends Participante {
 	 */
 	@Override
 	public String toString() {
-		String cadena = "";
-		cadena += "\nEquipo =>" + "\n" + idequipo + "\nanioinscripcion: " + anioinscripcion + "\nmanager: "
-				+ manager.getManager().getNombre() + "\ncomponentes: " + componentes.length;
-		for (Atleta a : componentes) {
-			cadena += a.getIdatleta() + ": " + a.getAtleta().getNombre() + "\n "
-					+ a.getAtleta().getFechaNac().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return "Equipo [idequipo=" + idequipo + ", anioinscripcion=" + anioinscripcion + ", manager=" + manager
+				+ ", componentes=" + componentes + "]";
+	}
+
+	/**
+	 * Metodo para crear un objeto equipo completo
+	 * 
+	 * @return equipo
+	 */
+	public Equipo nuevoEquipo() {
+		Scanner teclado = new Scanner(System.in);
+		Manager manager = new Manager();
+		Atleta atleta = new Atleta();
+		DatosPersona persona = new DatosPersona();
+		Equipo equipo = new Equipo();
+		System.out.println("Introducir el id del equipo: \n");
+		equipo.setId(teclado.nextLong());
+		System.out.println("Introducir el año de inscripcion del equipo: \n");
+		equipo.setAnioinscripcion(teclado.nextInt());
+		System.out.println("Introducir el nombre del manager del equipo: \n");
+		// equipo.setManager(persona.setNombre(teclado.next()));
+		System.out.println("Introducir los componentes del equipo. Entre 3 y 5: \n");
+		int numcomponentes = 5;
+		for (int i = 3; i <= 5; i++) {
+			componentes.add(atleta);
 		}
-		return cadena;
+		return equipo;
 	}
 
 }
