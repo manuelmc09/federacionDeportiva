@@ -11,6 +11,7 @@ import utils.Utilidades;
 public class Equipo extends Participante {
 	// Atributos
 	private long idequipo;
+	private String nombre;
 	private int anioinscripcion;
 	private Manager manager;
 	private TreeSet<Atleta> componentes = new TreeSet<Atleta>();
@@ -28,13 +29,15 @@ public class Equipo extends Participante {
 	 * Constructor con todos los parametros
 	 * 
 	 * @param idequipo
+	 * @param nombre
 	 * @param anioinscripcion
 	 * @param manager
 	 * @param componentes
 	 */
-	public Equipo(long idequipo, int anioinscripcion, Manager manager, TreeSet<Atleta> componentes) {
+	public Equipo(long idequipo,String nombre int anioinscripcion, Manager manager, TreeSet<Atleta> componentes) {
 		super();
 		this.idequipo = idequipo;
+		this.nombre=nombre;
 		this.anioinscripcion = anioinscripcion;
 		this.componentes = new TreeSet<Atleta>();
 	}
@@ -62,6 +65,7 @@ public class Equipo extends Participante {
 	 */
 	public Equipo(Equipo e) {
 		this.idequipo = e.idequipo;
+		this.nombre=e.nombre;
 		this.anioinscripcion = e.anioinscripcion;
 		this.manager = e.manager;
 		this.componentes = e.componentes;
@@ -74,6 +78,13 @@ public class Equipo extends Participante {
 
 	public void setIdequipo(long idequipo) {
 		this.idequipo = idequipo;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre){
+		return nombre;
 	}
 
 	public int getAnioinscripcion() {
@@ -107,7 +118,7 @@ public class Equipo extends Participante {
 	 */
 	@Override
 	public String toString() {
-		return "Equipo [idequipo=" + idequipo + ", anioinscripcion=" + anioinscripcion + ", manager=" + manager
+		return "Equipo [idequipo=" + idequipo + ", nombre=" + nombre+ ", anioinscripcion=" + anioinscripcion + ", manager=" + manager
 				+ ", componentes=" + componentes + "]";
 	}
 
@@ -124,6 +135,8 @@ public class Equipo extends Participante {
 		Equipo equipo = new Equipo();
 		System.out.println("Introducir el id del equipo: \n");
 		equipo.setId(teclado.nextLong());
+		System.out.println("Introducir el nombre del equipo: \n");
+		equipo.setNombre(teclado.next());
 		System.out.println("Introducir el año de inscripcion del equipo: \n");
 		equipo.setAnioinscripcion(teclado.nextInt());
 		System.out.println("Introducir el nombre del manager del equipo: \n");
