@@ -22,5 +22,11 @@ public enum Categoria {
 	public String getNombre() {
 		return nombre;
 	}
+	public static void mostrarCategoria() {
+		int i=1;
+		for(Categoria cat: Categoria.values()) {
+			System.out.println(i+"--> "+cat.getNombre()+" se corresponde con la sigla "+cat.getSigla());
+		}
+	}
 
 }

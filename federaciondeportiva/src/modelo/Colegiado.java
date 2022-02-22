@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Colegiado {
 	// Atributos
 	private long id;
-	private String categoria;
+	private Categoria categoria;
 	private DatosPersona colegiado;
 
 	// Constructores
@@ -23,7 +23,7 @@ public class Colegiado {
 	 * @param categoria
 	 * @param colegiado
 	 */
-	public Colegiado(long id, String categoria, DatosPersona colegiado) {
+	public Colegiado(long id, Categoria categoria, DatosPersona colegiado) {
 		super();
 		this.id = id;
 		this.categoria = categoria;
@@ -50,11 +50,11 @@ public class Colegiado {
 		this.id = id;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -86,16 +86,22 @@ public class Colegiado {
 		Scanner teclado = new Scanner(System.in);
 		Colegiado col = null;
 		long id = -1;
-		String categoria = "";
+		Categoria categoria = null;
 		String nif = "";
 		String telefono = "";
 		DatosPersona datos = null;
 		System.out.println("Introduzca el id del colegiado:");
 		id = teclado.nextLong();
-		System.out.println("Introducir la categoria del colegiado. (Solo puede escoger entre A, B o C");
-		categoria = teclado.next();
-		System.out.println("Introducir el nif del colegiado ");
-		nif = teclado.next();
+		System.out.println("Introducir la categoria del colegiado.(Elija 1 para 'N' y 2 para 'S'");
+		Categoria.mostrarCategoria();
+		int eleccion = -1;
+		eleccion = teclado.nextInt();
+		if (eleccion == 1) {
+			categoria.sigla = 'N';
+		} else {
+			categoria.sigla = 'S';
+		}
+
 		System.out.println("Introducir el resto de datos personales: ");
 		datos = DatosPersona.nuevaPersona();
 		return col;
