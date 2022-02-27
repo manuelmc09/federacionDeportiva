@@ -18,7 +18,7 @@ USE `bdfededeportes` ;
 -- Table `bdfededeportes`.`persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bdfededeportes`.`persona` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(50) NOT NULL,
   `telefono` VARCHAR(50) NOT NULL,
   `fechaNac` DATE NOT NULL,
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bdfededeportes`.`manager` (
   `direccion` VARCHAR(50) NOT NULL,
-  `persona_id` INT NOT NULL,
+  `persona_id` bigint(20) NOT NULL,
   PRIMARY KEY (`persona_id`),
   CONSTRAINT `fk_manager_persona1`
     FOREIGN KEY (`persona_id`)
@@ -47,8 +47,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bdfededeportes`.`equipo` (
   `nombre` VARCHAR(50) NOT NULL,
   `anioinscripcion` INT NOT NULL,
-  `manager_persona_id` INT NOT NULL,
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `manager_persona_id` bigint(20) NOT NULL,
+  `id`  bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_equipo_manager1`
     FOREIGN KEY (`manager_persona_id`)
@@ -64,8 +64,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bdfededeportes`.`atleta` (
   `altura` FLOAT NOT NULL,
   `peso` FLOAT NOT NULL,
-  `persona_id` INT NOT NULL,
-  `equipo_id` INT NOT NULL,
+  `persona_id` bigint(20) NOT NULL,
+  `equipo_id` bigint(20) NOT NULL,
   PRIMARY KEY (`persona_id`),
   CONSTRAINT `fk_atleta_persona1`
     FOREIGN KEY (`persona_id`)
