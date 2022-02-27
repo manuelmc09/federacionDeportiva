@@ -60,17 +60,19 @@ public class Equipo extends Participante {
 	}
 
 	/**
-	 * Constructor con un parametro de la propia clase Equipo.LLamado constructor
-	 * copia
+	 * Constructor copia
 	 * 
-	 * @param e
+	 * @param p
 	 */
-	public Equipo(Equipo e) {
-		this.idequipo = e.idequipo;
-		this.nombre = e.nombre;
-		this.anioinscripcion = e.anioinscripcion;
-		this.manager = e.manager;
-		this.componentes = e.componentes;
+	public Equipo(Participante p) {
+		super(p);
+		if (Equipo.class.isInstance(p)) {
+			this.idequipo = ((Equipo) p).getId();
+			this.anioinscripcion = ((Equipo) p).getAnioinscripcion();
+			this.manager = ((Equipo) p).getManager();
+		} else {
+			this.componentes = new TreeSet<Atleta>();
+		}
 	}
 
 	// Metodos publicos
@@ -138,9 +140,9 @@ public class Equipo extends Participante {
 		Equipo equipo = new Equipo();
 		boolean valido = false;
 		System.out.println("Introduzca los datos para el nuevo Equipo :");
-		//Leemos y validamos el id
+		// Leemos y validamos el id
 		do {
-			
+
 			valido = Utilidades.validarId(id);
 			if (!valido)
 				System.out.println("Id invalido.");
@@ -148,11 +150,11 @@ public class Equipo extends Participante {
 		equipo.setId(id);
 
 		// equipo.setId(teclado.nextLong());
-		//Leer nombre equipo y validar
+		// Leer nombre equipo y validar
 		String nombre;
 		do {
 			System.out.println("Introducir el nombre del equipo: ");
-			nombre=teclado.next();
+			nombre = teclado.next();
 			valido = Utilidades.validarNombre(nombre);
 			if (!valido) {
 				System.out.println("Nombre invalido.");

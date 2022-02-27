@@ -3,6 +3,7 @@ package modelo;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ public class Colegiado implements Serializable {
 	 * Constructor por defecto
 	 */
 	public Colegiado() {
+		super();
 	}
 
 	/**
@@ -31,6 +33,18 @@ public class Colegiado implements Serializable {
 		this.id = id;
 		this.categoria = categoria;
 		this.colegiado = colegiado;
+	}
+
+	/**
+	 * Constructor con 2 parametros
+	 * 
+	 * @param id
+	 * @param categoria
+	 */
+	public Colegiado(long id, Categoria categoria) {
+		super();
+		this.id = id;
+		this.categoria = categoria;
 	}
 
 	/**
@@ -102,7 +116,5 @@ public class Colegiado implements Serializable {
 		col = new Colegiado(id, categoria, datos);
 		return col;
 	}
-
-	
 
 }

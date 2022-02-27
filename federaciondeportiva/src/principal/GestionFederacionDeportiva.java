@@ -1,15 +1,19 @@
 package principal;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+import dao.AtletaDAO;
+import dao.ColegiadoDAO;
 import dao.DatosPersonaDAO;
 import modelo.Atleta;
 import modelo.DatosPersona;
@@ -138,12 +142,12 @@ public class GestionFederacionDeportiva {
 								break;
 							case 5:
 								System.out.println("\n------------------------------------------------------------");
-								System.out.println("\tMétodo para importar a un fichero de bytes");
+								System.out.println("\tMétodo para importar a un fichero de bytes - Colegiado");
 								System.out.println("------------------------------------------------------------\n");
-								
-								
-								
-								
+								ColegiadoDAO col = new ColegiadoDAO();
+								col.exportarDatosColegiadoToBinaryFile();
+								ColegiadoDAO.importarDatosColegiadoFicheroBytes("NORTE");
+
 								break;
 							case 6:
 								System.out.println(
@@ -152,6 +156,10 @@ public class GestionFederacionDeportiva {
 										"\tMétodo para exportar hacia un fichero binario una serie de objetos\n\t\t\t de la entidad Atleta");
 								System.out.println(
 										"-------------------------------------------------------------------------------------------\n");
+								AtletaDAO at = new AtletaDAO();
+								ArrayList<Atleta> atletaselegidos = new ArrayList<Atleta>();
+								at.exportarDatosAtletaToBinaryFile(atletaselegidos);
+
 								break;
 							default:
 								System.out.println("Saliendo...");
@@ -159,7 +167,7 @@ public class GestionFederacionDeportiva {
 								break;
 							}
 
-						} catch (InputMismatchException e) {
+						} catch (InputMismatchException | IOException e) {
 							System.out.println("La eleccion debe de ser un número entre 1 y 7 Intente de nuevo ");
 							teclado.next();
 						}
@@ -224,7 +232,7 @@ public class GestionFederacionDeportiva {
 								System.out.println("------------------------------------------------------------\n");
 
 								System.out.println("Insertaremos el dato primeramente en la tabla persona ");
-								DatosPersona p=DatosPersona.nuevaPersona();
+								DatosPersona p = DatosPersona.nuevaPersona();
 								DatosPersonaDAO pessoa = new DatosPersonaDAO();
 								pessoa.insertarDatosPersona(p);
 								// Insertamos persona nueva
@@ -358,15 +366,16 @@ public class GestionFederacionDeportiva {
 		System.out.println("1. Gestión de medallas ");
 		System.out.println("2. Conformar Competición ");
 		System.out.println("3. Conformar Prueba ");
-		System.out
-				.println("4. Método para exportar a un fichero de texto la información completa de todas aquellas \r\n"
-						+ "medallas cuya pureza es mayor o igual a una dada ");
-		System.out
-				.println("5. Método para importar desde un fichero de bytes que contiene varios objetos Colegiado, \r\n"
-						+ "aquellos que sean de una categoría en concreto ");
-		System.out.println(
-				"6. Método para exportar hacia un fichero binario una serie de objetos de la entidad Atleta, \r\n"
-						+ "que cumplen unos criterios físicos, de entre una colección de Atletas que se pasa como parámetro ");
+		System.out.println("4. Método para exportar a un fichero de texto la información...<!-- Ejercicio 5.1--> ");
+		// +" completa de todas aquellas \r\n"
+		// + "medallas cuya pureza es mayor o igual a una dada "
+		System.out.println("5. Método para importar desde un fichero de bytes ...<!-- Ejercicio 5.2-->");
+		// +"que contiene varios objetos Colegiado, \r\n"
+		// + "aquellos que sean de una categoría en concreto "
+		System.out.println("6. Método para exportar hacia un fichero binario ...<!-- Ejercicio 5.3-->");
+		// + " una serie de objetos de la entidad Atleta, \r\n"
+		// + "que cumplen unos criterios físicos, de entre una colección de Atletas que
+		// se pasa como parámetro ");
 		System.out.println("7. Salir ");
 	}
 

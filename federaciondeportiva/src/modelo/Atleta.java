@@ -1,11 +1,12 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import utils.Utilidades;
 
-public class Atleta extends Participante implements Comparable<Atleta> {
+public class Atleta extends Participante implements Comparable<Atleta>, Serializable {
 	// Atributos
 	private float altura;
 	private float peso;
@@ -17,6 +18,29 @@ public class Atleta extends Participante implements Comparable<Atleta> {
 	 */
 	public Atleta() {
 		super();
+	}
+
+	/**
+	 * Constructor con 3 parametros
+	 * 
+	 * @param id
+	 * @param dorsal
+	 * @param calle
+	 */
+	public Atleta(long id, int dorsal, char calle) {
+		super(id, dorsal, calle);
+	}
+
+	/**
+	 * Constructor con dos parametros
+	 * 
+	 * @param altura
+	 * @param peso
+	 */
+	public Atleta(float altura, float peso) {
+		super();
+		this.altura = altura;
+		this.peso = peso;
 	}
 
 	/**
@@ -37,8 +61,7 @@ public class Atleta extends Participante implements Comparable<Atleta> {
 	}
 
 	/**
-	 * Constructor con 4 parametros
-	 * 
+	 * Constructor con 3 parametros
 	 * 
 	 * @param altura
 	 * @param peso
@@ -56,11 +79,11 @@ public class Atleta extends Participante implements Comparable<Atleta> {
 	 * 
 	 * @param a
 	 */
-	public Atleta(Atleta a) {
-		super(a);
-		if (Atleta.class.isInstance(a)) {
-			this.altura = ((Atleta) a).getAltura();
-			this.peso = ((Atleta) a).getPeso();
+	public Atleta(Participante p) {
+		super(p);
+		if (Atleta.class.isInstance(p)) {
+			this.altura = ((Atleta) p).getAltura();
+			this.peso = ((Atleta) p).getPeso();
 		} else {
 			this.atleta = new DatosPersona();
 		}
@@ -123,19 +146,10 @@ public class Atleta extends Participante implements Comparable<Atleta> {
 		a.peso = Utilidades.leerFloat();
 		System.out.println("Introducir la altura del atleta(en cm:) ");
 		a.altura = Utilidades.leerFloat();
+		System.out.println("Seguidamente los datos personales: ");
+		datos.nuevaPersona();
 
 		return a;
-	}
-
-	/**
-	 * Metodo para exportar los datos de la entidad Atleta, que cumplen unos
-	 * criterios físicos (valor de peso y de altura dentro de unos rangos dados) de
-	 * entre una colección de Atletas que se pasa como parámetro.
-	 * 
-	 * @param atleta
-	 */
-	private static void exportarDatosbinario(Atleta[] atleta) {
-
 	}
 
 	/**
