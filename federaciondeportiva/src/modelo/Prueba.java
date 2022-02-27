@@ -176,7 +176,7 @@ public class Prueba {
 			Participante p = it_clasificacion.next();
 			Integer dorsal = p.getDorsal();
 			char calle = p.getCalle();
-			cadena1 += "Por la calle " + calle + " con el dorsal " + dorsal + " el atleta " + a.getIdatleta();
+			cadena1 += "Por la calle " + calle + " con el dorsal " + dorsal + " el atleta " + p.id;
 			// sin terminar. falta equipo arbital comformado y el resultado con los podios
 			// de los participantes
 		}
@@ -185,7 +185,10 @@ public class Prueba {
 		 * + ", arbitros=" + Arrays.toString(arbitros) + ", resultado=" + resultado +
 		 * ", participantes=" + participantes + "]";
 		 */
-		return cadena;
+		if(this.arbitros.length==3) {
+			cadena1+=this.nombresEquipoArbitral();
+		}
+		return cadena+cadena1;
 	}
 
 	/**

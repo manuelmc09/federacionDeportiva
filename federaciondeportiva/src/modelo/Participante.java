@@ -1,9 +1,13 @@
 package modelo;
 
+import java.util.Scanner;
+
+import utils.Utilidades;
+
 public class Participante {
 	// Atributos
 	protected long id;
-	protected int dorsal;
+	protected int dorsal;// valores acotados entre 001 y 150-->Como consignarlos??
 	protected char calle;
 
 	// Constructores
@@ -11,6 +15,7 @@ public class Participante {
 	 * Constructor por defecto
 	 */
 	public Participante() {
+		this.dorsal = 001;
 
 	}
 
@@ -24,7 +29,11 @@ public class Participante {
 	public Participante(long id, int dorsal, char calle) {
 		super();
 		this.id = id;
+		if ((dorsal < 001) && (dorsal > 150)) {
+			throw new IllegalArgumentException();
+		}
 		this.dorsal = dorsal;
+
 		this.calle = calle;
 	}
 
@@ -72,6 +81,32 @@ public class Participante {
 	@Override
 	public String toString() {
 		return "Participante [id=" + id + ", dorsal=" + dorsal + ", calle=" + calle + "]";
+	}
+
+	/**
+	 * Metodo para crear un objeto Participante nuevo completo
+	 * 
+	 * @return un participante completo
+	 */
+	public static Participante nuevoParticipante() {
+		Scanner teclado = new Scanner(System.in);
+		Participante p = new Participante();
+		long id = -1;
+		int dorsal = 001;
+		char calle = '\u0000';
+		boolean valido = false;
+		do {
+			valido = Utilidades.validarId(id);
+			if (!valido)
+				System.out.println("Id invalido.");
+		} while (!valido);
+		p.setId(id);
+
+		System.out.println("Introduzca el dorsal del participante. Recuerde debe ser este formato (001-150)");
+		dorsal = teclado.nextInt();
+		System.out.println("Introduzca la calle por la que participara en la prueba. (Formato letra: p.ej: C o c) ");
+		calle = teclado.next().charAt(0);
+		return p;
 	}
 
 }

@@ -2,10 +2,11 @@ package modelo;
 
 import java.util.Scanner;
 
+import utils.Utilidades;
+
 public class Manager {
 	// Atributos
 	private long id;
-	private String telefono;
 	private String direccion;
 	private DatosPersona manager;
 
@@ -21,14 +22,12 @@ public class Manager {
 	 * Constructor con todos los parametros
 	 * 
 	 * @param id
-	 * @param telefono
 	 * @param direccion
 	 * @param manager
 	 */
-	public Manager(long id, String telefono, String direccion, DatosPersona manager) {
+	public Manager(long id, String direccion, DatosPersona manager) {
 		super();
 		this.id = id;
-		this.telefono = telefono;
 		this.direccion = direccion;
 		this.manager = manager;
 	}
@@ -40,7 +39,6 @@ public class Manager {
 	 */
 	public Manager(Manager m) {
 		this.id = m.id;
-		this.telefono = m.telefono;
 		this.direccion = m.direccion;
 		this.manager = m.manager;
 	}
@@ -52,14 +50,6 @@ public class Manager {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
 	}
 
 	public String getDireccion() {
@@ -85,8 +75,7 @@ public class Manager {
 	 */
 	@Override
 	public String toString() {
-		return "Manager [id=" + id + ", telefono=" + telefono + ", direccion=" + direccion + ", manager=" + manager
-				+ "]";
+		return "Manager [id=" + id + ", direccion=" + direccion + ", manager=" + manager + "]";
 	}
 
 	/**
@@ -96,19 +85,27 @@ public class Manager {
 	 */
 	public static Manager nuevoManager() {
 		Scanner teclado = new Scanner(System.in);
-		Manager manager = null;
+		Manager manager = new Manager();
 		long id = -1;
-		String telefono = "";
 		String direccion = "";
-		DatosPersona datos = null;
+		DatosPersona datos = new DatosPersona();
 		System.out.println("Introducir el id del manager ");
 		id = teclado.nextLong();
-		System.out.println("Introducir el telefono del manager ");
-		telefono = teclado.next();
-		System.out.println("Introducir la dirección del manager ");
-		direccion = teclado.next();
-		System.out.println("Introducir el resto de datos personales: ");
+		// Leemos la dirección y validamos
+		boolean valido = false;
+		do {
+			 System.out.println("Introducir la dirección del manager ");
+			 direccion = teclado.next();
+			valido = Utilidades.validarDireccion(direccion);
+			if (!valido)
+				System.out.println("Direccion invalida.");
+
+		} while (!valido);
+		manager.setDireccion(direccion);
+
+		System.out.println("Seguimos Introduciendo el resto de sus datos personales: ");
 		datos = DatosPersona.nuevaPersona();
+		manager = new Manager(id, direccion, datos);
 		return manager;
 
 	}

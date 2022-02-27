@@ -1,9 +1,12 @@
 package modelo;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Colegiado {
+public class Colegiado implements Serializable {
 	// Atributos
 	private long id;
 	private Categoria categoria;
@@ -93,32 +96,13 @@ public class Colegiado {
 		System.out.println("Introduzca el id del colegiado:");
 		id = teclado.nextLong();
 		System.out.println("Introducir la categoria del colegiado.(Elija 1 para 'N' y 2 para 'S'");
-		Categoria.mostrarCategoria();
-		int eleccion = -1;
-		eleccion = teclado.nextInt();
-		if (eleccion == 1) {
-			categoria.sigla = 'N';
-		} else {
-			categoria.sigla = 'S';
-		}
-
+		Categoria.seleccionarCategoria();
 		System.out.println("Introducir el resto de datos personales: ");
 		datos = DatosPersona.nuevaPersona();
+		col = new Colegiado(id, categoria, datos);
 		return col;
 	}
 
-	/**
-	 * Método para importar desde un fichero de bytes que contiene varios objetos
-	 * Colegiado, aquellos que sean de una categoría en concreto (la cual se pasa
-	 * como parámetro en forma de cadena de caracteres). El método devolverá la
-	 * colección de objetos de la entidad Colegiado que cumplan ese criterio.
-	 * 
-	 * @param col
-	 */
-	private static ArrayList<Colegiado> exportarDatosbytes(String Categoria) {
-		ArrayList<Colegiado> colegiadosCat = null;
-		return colegiadosCat;
-
-	}
+	
 
 }

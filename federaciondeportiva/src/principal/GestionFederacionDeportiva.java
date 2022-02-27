@@ -1,13 +1,27 @@
 package principal;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.TreeSet;
 
+import dao.DatosPersonaDAO;
 import modelo.Atleta;
+import modelo.DatosPersona;
+import modelo.Equipo;
+import modelo.Manager;
+import modelo.Metal;
 
 public class GestionFederacionDeportiva {
+	static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public static void main(String[] args) {
+		Connection conex = null;
 		Scanner teclado = new Scanner(System.in);
 
 		int opcion = 0;
@@ -61,8 +75,41 @@ public class GestionFederacionDeportiva {
 										break;
 									case 2:
 										System.out.println("\n#############################");
-										System.out.println();
+										System.out.println("\tVer Medallas");
 										System.out.println("#############################\n");
+										System.out.println(
+												"Como desea hacer la busqueda:\n\t1.-Medallas asignadas \n\t2.-Por fecha de compra \n\t3.-Salir ");
+
+										try {
+											int elige = teclado.nextInt();
+											if (elige < 1 || elige > 3) {
+												System.out.println("Opcion incorrecta.Intente otra vez.... \n");
+												continue;
+											}
+											switch (elige) {
+											case 1:
+												System.out.println("Veremos las medallas ya asignadas");
+
+												break;
+											case 2:
+												System.out.println("Buscaremos por año de compra ");
+												Metal metal = null;
+												LocalDate fechacompra;
+												int aniobuscado = teclado.nextInt();
+												int aniocompra = metal.getFechacompra().getYear() + 1900;
+
+												break;
+											default:
+												System.out.println("Salir...");
+												break;
+											}
+
+										} catch (InputMismatchException e) {
+											System.out.println(
+													"La eleccion debe de ser un entre 1 y 2. Intente de nuevo ");
+											teclado.next();
+										}
+
 										break;
 									default:
 										System.out.println("Volviendo al menu de Gestion de Medallas....");
@@ -93,11 +140,18 @@ public class GestionFederacionDeportiva {
 								System.out.println("\n------------------------------------------------------------");
 								System.out.println("\tMétodo para importar a un fichero de bytes");
 								System.out.println("------------------------------------------------------------\n");
+								
+								
+								
+								
 								break;
 							case 6:
-								System.out.println("\n-------------------------------------------------------------------------------------------");
-								System.out.println("\tMétodo para exportar hacia un fichero binario una serie de objetos\n\t\t\t de la entidad Atleta");
-								System.out.println("-------------------------------------------------------------------------------------------\n");
+								System.out.println(
+										"\n-------------------------------------------------------------------------------------------");
+								System.out.println(
+										"\tMétodo para exportar hacia un fichero binario una serie de objetos\n\t\t\t de la entidad Atleta");
+								System.out.println(
+										"-------------------------------------------------------------------------------------------\n");
 								break;
 							default:
 								System.out.println("Saliendo...");
@@ -131,12 +185,51 @@ public class GestionFederacionDeportiva {
 								System.out.println("\n--------------------------------------");
 								System.out.println("\tConformar Equipo");
 								System.out.println("--------------------------------------\n");
-								
+								// Hemos elegido esta opcion de usuario Manager para el Ejercicio 4 apartado 2
+								Equipo e = new Equipo();
+								Manager m = new Manager();
+								Atleta a = new Atleta();
+								e.nuevoEquipo();
+								System.out.println("A continuación , los datos del manager para este equipo: \n");
+								m.nuevoManager();
+								System.out.println(
+										"Por último pedimos los datos de los atletas que conponen el equipo: \n");
+								System.out.println("Introduzca el numero de componentes del equipo a formar:");
+								boolean valido = false;
+								int numcomponentes = 0;
+								TreeSet<Atleta> equipoformado = new TreeSet<Atleta>();
+
+								do {
+									numcomponentes = teclado.nextInt();
+									if (numcomponentes < 3 || numcomponentes > 5) {
+										System.out.println("Deben de ser entre 3 y 5 componentes ");
+										valido = false;
+									} else {
+										System.out.println("El equipo tendrá " + numcomponentes + " componentes. ");
+										valido = true;
+									}
+
+								} while (!valido);
+								for (int i = 1; i <= numcomponentes; i++) {
+									System.out.println("\tDatos Atleta " + i + ": =>");
+									a.nuevoAtleta();
+									// e.getComponentes().add(a);
+									// equipoformado.add(a);
+								}
+								System.out.println("Veremos los componentes: " + equipoformado.size());
 								break;
 							case 2:
-								System.out.println("\n------------------------------------------");
-								System.out.println("\tInscribirse en Prueba");
-								System.out.println("------------------------------------------\n");
+								System.out.println("\n------------------------------------------------------------");
+								System.out.println("\tRegistrar en la BD. Insertar un nuevo registro");
+								System.out.println("------------------------------------------------------------\n");
+
+								System.out.println("Insertaremos el dato primeramente en la tabla persona ");
+								DatosPersona p=DatosPersona.nuevaPersona();
+								DatosPersonaDAO pessoa = new DatosPersonaDAO();
+								pessoa.insertarDatosPersona(p);
+								// Insertamos persona nueva
+								// DatosPersona p=new DatosPersona(15,"Antonio Miguel Hernandez","688905642");
+
 								break;
 
 							default:
@@ -241,6 +334,7 @@ public class GestionFederacionDeportiva {
 			}
 		} while (opcion != 5);// opcion SALIR en el Menu de elección de su perfil de usuario
 		System.out.println("Gracias por su participación");
+
 	} // Final del main
 
 	/**
@@ -281,8 +375,9 @@ public class GestionFederacionDeportiva {
 	 */
 	private static void mostrarMenuManager() {
 		System.out.println("Seleccione que operación desee realizar: \n");
-		System.out.println("1. Conformar equipo ");
-		System.out.println("2. Inscribirse en Prueba ");
+		System.out.println("1. Conformar equipo .\n<!--Ejercicio 4.2.-->");
+		System.out.println(
+				"2. Registrar en la BD. Insertar un nuevo registro en\n<!--Ejercicio 4.3.-->: \n\t1.-Tabla equipos \n\t2.-Tabla managers \n\t3.-Tabla personas \n\t4.-Tabla atletas ");
 		System.out.println("3. Salir ");
 
 	}

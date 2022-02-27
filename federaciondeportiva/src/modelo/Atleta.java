@@ -1,10 +1,12 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Atleta extends Participante {
+import utils.Utilidades;
+
+public class Atleta extends Participante implements Comparable<Atleta> {
 	// Atributos
-	private long idatleta;
 	private float altura;
 	private float peso;
 	private DatosPersona atleta;
@@ -20,7 +22,6 @@ public class Atleta extends Participante {
 	/**
 	 * Constructor con todos los parametros
 	 * 
-	 * @param idatleta
 	 * @param altura
 	 * @param peso
 	 * @param id
@@ -28,9 +29,8 @@ public class Atleta extends Participante {
 	 * @param calle
 	 * @param atleta
 	 */
-	public Atleta(long idatleta, float altura, float peso, long id, int dorsal, char calle, DatosPersona atleta) {
+	public Atleta(float altura, float peso, long id, int dorsal, char calle, DatosPersona atleta) {
 		super(id, dorsal, calle);
-		this.idatleta = idatleta;
 		this.altura = altura;
 		this.peso = peso;
 		this.atleta = atleta;
@@ -39,14 +39,13 @@ public class Atleta extends Participante {
 	/**
 	 * Constructor con 4 parametros
 	 * 
-	 * @param idatleta
+	 * 
 	 * @param altura
 	 * @param peso
 	 * @param atleta
 	 */
-	public Atleta(long idatleta, float altura, float peso, DatosPersona atleta) {
+	public Atleta(float altura, float peso, DatosPersona atleta) {
 		super();
-		this.idatleta = idatleta;
 		this.altura = altura;
 		this.peso = peso;
 		this.atleta = atleta;
@@ -58,20 +57,17 @@ public class Atleta extends Participante {
 	 * @param a
 	 */
 	public Atleta(Atleta a) {
-		this.idatleta = a.idatleta;
-		this.altura = a.altura;
-		this.peso = a.peso;
-		this.atleta = a.atleta;
+		super(a);
+		if (Atleta.class.isInstance(a)) {
+			this.altura = ((Atleta) a).getAltura();
+			this.peso = ((Atleta) a).getPeso();
+		} else {
+			this.atleta = new DatosPersona();
+		}
+
 	}
 
 	// Metodos publicos
-	public long getIdatleta() {
-		return idatleta;
-	}
-
-	public void setIdatleta(long idatleta) {
-		this.idatleta = idatleta;
-	}
 
 	public float getAltura() {
 		return altura;
@@ -104,7 +100,10 @@ public class Atleta extends Participante {
 	 */
 	@Override
 	public String toString() {
-		return "Atleta [idatleta=" + idatleta + ", altura=" + altura + ", peso=" + peso + ", atleta=" + atleta + "]";
+		String cadena;
+		cadena = super.id + ". Atleta: dorsal--> " + super.dorsal + " calle--> " + super.calle;
+		cadena += "Atleta [altura=" + altura + ", peso=" + peso + ", atleta=" + atleta + "]";
+		return cadena;
 	}
 
 	/**
@@ -115,20 +114,16 @@ public class Atleta extends Participante {
 	 */
 	public static Atleta nuevoAtleta() {
 		Scanner teclado = new Scanner(System.in);
-		Atleta a = null;
-		DatosPersona datos = null;
-		long id = -1;
-		float altura = 0.0F;
-		float peso = 0.0F;
-		System.out.println("Introducir el ide del atleta: ");
-		id = teclado.nextLong();
+		DatosPersona datos = new DatosPersona();
+		Participante p = new Participante();
+
+		// Atleta a = (Atleta) Participante.nuevoParticipante();
+		Atleta a = new Atleta();
 		System.out.println("Introducir el peso del atleta(en Kgs:) ");
-		peso = teclado.nextFloat();
-		System.out.println("Introducir la altura del atleta(en m:) ");
-		altura = teclado.nextFloat();
-		System.out.println("Introducir el resto de datos personales: ");
-		datos = DatosPersona.nuevaPersona();
-		a=new Atleta(id,altura,peso,datos);
+		a.peso = Utilidades.leerFloat();
+		System.out.println("Introducir la altura del atleta(en cm:) ");
+		a.altura = Utilidades.leerFloat();
+
 		return a;
 	}
 
@@ -141,5 +136,15 @@ public class Atleta extends Participante {
 	 */
 	private static void exportarDatosbinario(Atleta[] atleta) {
 
+	}
+
+	/**
+	 * Metodo para comparar los atletas por nombre
+	 */
+	@Override
+	public int compareTo(Atleta a) {
+		int compara = atleta.getNombre().compareToIgnoreCase(atleta.getNombre());
+
+		return 0;
 	}
 }

@@ -87,18 +87,44 @@ public class DatosPersona {
 	 */
 	public static DatosPersona nuevaPersona() {
 		Scanner teclado = new Scanner(System.in);
-		DatosPersona persona = null;
+		DatosPersona persona = new DatosPersona();
 		long id = -1;
 		String nombre = "";
 		String telefono = "";
 		LocalDate fechaNac = null;
-		System.out.println("Introduzca el id de la persona:");
-		id = teclado.nextInt();
-		System.out.println("Introduzca el teléfono de la persona:");
-		telefono = teclado.next();
-		System.out.println("Introduzca la fecha de nacimiento de la persona");
-		fechaNac = Utilidades.leerFecha();
-		persona = new DatosPersona(id, nombre, telefono, fechaNac);
+		boolean valido = false;
+		// Leemos el id y validamos
+		do {
+
+			valido = Utilidades.validarId(id);
+			if (!valido)
+				System.out.println("Id invalido.");
+		} while (!valido);
+		persona.setId(id);
+
+		// Leemos el telefono y validamos
+		do {
+			System.out.println("Introduzca el teléfono de la persona:");
+			telefono = teclado.next();
+			valido = Utilidades.validarTelefono(telefono);
+			if (!valido)
+				System.out.println("Telefono invalido.");
+		} while (!valido);
+		persona.setTelefono(telefono);
+		// Leermos fecha y validamos
+		do {
+			try {
+				System.out.println("Introduzca la fecha de nacimiento de la persona");
+				fechaNac = Utilidades.leerFecha();
+				valido = true;
+			} catch (Exception e) {
+				System.out.println("Ha ocurrido una excepcion al leer la fecha: " + e.getMessage());
+				valido = false;
+			}
+
+		} while (!valido);
+		persona.setFechaNac(fechaNac);
+
 		return persona;
 	}
 
